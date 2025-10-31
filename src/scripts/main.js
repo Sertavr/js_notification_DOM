@@ -1,6 +1,7 @@
 'use strict';
 
-const pushNotification = (posTop, posRight, title, description, type) => {
+const pushNotification = (coordinates, title, description, type) => {
+  const { top: topPosition, right } = coordinates;
   const container = document.createElement('div');
   const titleNotification = document.createElement('h2');
   const paragraph = document.createElement('p');
@@ -11,8 +12,8 @@ const pushNotification = (posTop, posRight, title, description, type) => {
   titleNotification.classList.add('title');
   titleNotification.textContent = title;
   paragraph.textContent = description;
-  container.style.top = `${posTop}px`;
-  container.style.right = `${posRight}px`;
+  container.style.top = `${topPosition}px`;
+  container.style.right = `${right}px`;
 
   container.insertAdjacentElement('beforeend', titleNotification);
   container.insertAdjacentElement('beforeend', paragraph);
@@ -22,24 +23,21 @@ const pushNotification = (posTop, posRight, title, description, type) => {
 };
 
 pushNotification(
-  10,
-  10,
+  { top: 10, right: 10 },
   'Title of Success message',
   'Message example.\n ' + 'Notification should contain title and description.',
   'success',
 );
 
 pushNotification(
-  150,
-  10,
+  { top: 150, right: 10 },
   'Title of Error message',
   'Message example.\n ' + 'Notification should contain title and description.',
   'error',
 );
 
 pushNotification(
-  290,
-  10,
+  { top: 290, right: 10 },
   'Title of Warning message',
   'Message example.\n ' + 'Notification should contain title and description.',
   'warning',
